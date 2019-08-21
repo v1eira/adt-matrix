@@ -22,18 +22,9 @@ def checkIsMatrix(matrix):
 def printMatrix(matrix):
 	for i in range(len(matrix)):
 		for j in range(len(matrix[i])):
-			print("%d " % matrix[i][j], end="")
+			print("%.d " % matrix[i][j], end="")
 		print("\n")
 #end printMatrix
-
-
-def multiplyElements(matrix, num):
-	for i in range(len(matrix)):
-		for j in range(len(matrix[i])):
-			matrix[i][j] *= num
-	
-	return matrix
-#end multiplyElements
 
 
 def multiplyMatrix(matrixA, matrixB):
@@ -49,26 +40,58 @@ def multiplyMatrix(matrixA, matrixB):
 #end multiplyMatrix
 
 
-def rotateColumnLeft(matrix):
-	for i in range(len(matrix)):
-		for j in range(len(matrix[i])-1):
-			original = matrix[i][j]
-			matrix[i][j] = matrix[i][j+1]
-			matrix[i][j+1] = original
+# ~ def sumMatrix(matrixA, matrixB):
+# ~ #end sumMatrix
+
+
+# ~ def divideMatrix(matrixA, matrixB):
+# ~ #end divideMatrix
+
+
+def rotateColumnLeft(matrix, times = 1):
+	for x in range(times):
+		for i in range(len(matrix)):
+			for j in range(len(matrix[i])-1):
+				original = matrix[i][j]
+				matrix[i][j] = matrix[i][j+1]
+				matrix[i][j+1] = original
 	
 	return matrix
 #end rotateColumnLeft
 
 
-def rotateColumnRight(matrix):
-	for i in range(len(matrix)):
-		for j in range(len(matrix[i])):
-			original = matrix[i][j]
-			matrix[i][j] = matrix[i][len(matrix[i])-1]
-			matrix[i][len(matrix[i])-1] = original
+def rotateColumnRight(matrix, times = 1):
+	for x in range(times):
+		for i in range(len(matrix)):
+			for j in range(len(matrix[i])):
+				original = matrix[i][j]
+				matrix[i][j] = matrix[i][len(matrix[i])-1]
+				matrix[i][len(matrix[i])-1] = original
 	
 	return matrix
 #end rotateColumnRight
+
+def rotateLineUp(matrix, times = 1):
+	for x in range(times):
+		for i in range(len(matrix)-1):
+			original = matrix[i]
+			matrix[i] = matrix[i+1]
+			matrix[i+1] = original
+	
+	return matrix
+
+#end rotateLineUp
+
+
+def rotateLineDown(matrix, times = 1):
+	for x in range(times):
+		for i in range(len(matrix)-1):
+			original = matrix[i]
+			matrix[i] = matrix[len(matrix)-1]
+			matrix[len(matrix)-1] = original
+
+	return matrix
+#end rotateLineDown
 
 
 def sumElements(matrix):
@@ -79,6 +102,33 @@ def sumElements(matrix):
 	
 	return total
 #end sumElements
+
+
+def multiplyElements(matrix, value):
+	for i in range(len(matrix)):
+		for j in range(len(matrix[i])):
+			matrix[i][j] *= value
+	
+	return matrix
+#end multiplyElements
+
+
+def divideElements(matrix, value):
+	for i in range(len(matrix)):
+		for j in range(len(matrix[i])):
+			matrix[i][j] /= value
+	
+	return matrix
+#end divideElements
+
+
+def sqrtElements(matrix):
+	for i in range(len(matrix)):
+		for j in range(len(matrix[i])):
+			matrix[i][j] = matrix[i][j]**(1/2)
+
+	return matrix
+#end sqrtElements
 
 
 def addToElements(matrix, value):
@@ -117,64 +167,36 @@ def meanValue(matrix):
 	
 	return (total/(len(matrix)*len(matrix[0])))
 #end meanValue
-			
-
-# ~ def sqrtElements(matrix):
-# ~ #end sqrtElements
-
-
-# ~ def sumMatrix(matrixA, matrixB):
-# ~ #end sumMatrix
-
-
-# ~ def divideMatrix(matrixA, matrixB):
-# ~ #end divideMatrix
-
-# ~ def rotateLineUp(matrix):
-# ~ #end rotateLineUp
-
-
-# ~ def rotateLineDown(matrix):
-# ~ #end rotateLineDown
 
 
 def main():
-    mat = [[1,2], [3,4]]
-    mat2 = [[-1,3], [4,2]]
-    
-    matrix = multiplyMatrix(mat, mat2)
-    
-    printMatrix(matrix)
-    
-    print("- - -")
-    
-    matrix = multiplyElements(mat, 2)
-    
-    printMatrix(matrix)
-    
-    print("- - -")
-    
-    matrix = [[1,2,2,3,7], [2,1,3,4,3], [4,3,3,1,5], [2,4,3,3,6]]
-    
-    printMatrix(matrix)
-    
-    print("\n\n")
-    
-    matrix = rotateColumnLeft(matrix)
-    
-    printMatrix(matrix)
-    
-    matrix = addToElements(matrix, 1)
-    
-    print("\n\n")
-    
-    printMatrix(matrix)
-    
-    print(sumElements(matrix))
-    print(minValue(matrix))
-    print(maxValue(matrix))
-    print(meanValue(matrix))
-    
+	matrix = [[1,4,2,4,4], [2,1,4,4,9], [9,4,4,1,25], [2,4,9,9,36]]
+
+	printMatrix(matrix)
+
+	print("- - - - - - - - - -\n")
+
+	matrix = rotateColumnLeft(matrix)
+	printMatrix(matrix)
+
+	print("- - - - - - - - - -\n")
+
+	matrix = rotateColumnRight(matrix)
+	printMatrix(matrix)
+
+	print("- - - - - - - - - -\n")
+
+	matrix = rotateLineUp(matrix)
+	printMatrix(matrix)
+
+	print("- - - - - - - - - -\n")
+	matrix = rotateLineDown(matrix)
+	printMatrix(matrix)
+
+	print("- - - - - - - - - -\n")
+	matrix = divideElements(matrix, 2)
+	printMatrix(matrix)
+
 
 if __name__ == '__main__':
     import sys
