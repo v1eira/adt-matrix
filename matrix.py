@@ -40,8 +40,33 @@ def multiplyMatrix(matrixA, matrixB):
 #end multiplyMatrix
 
 
-# ~ def sumMatrix(matrixA, matrixB):
-# ~ #end sumMatrix
+def sumMatrix(matrixA, matrixB):
+	if ((len(matrixA) == len(matrixB)) and (len(matrixA[0]) == len(matrixB[0]))):
+		m = []
+		for i in range(len(matrixA)):
+			linha = []
+			for j in range(len(matrixA[0])):
+				linha.append(matrixA[i][j] + matrixB[i][j])
+			m.append(linha)
+		
+		return m
+	
+	return 0
+#end sumMatrix
+
+def subtractMatrix(matrixA, matrixB):
+	if ((len(matrixA) == len(matrixB)) and (len(matrixA[0]) == len(matrixB[0]))):
+		m = []
+		for i in range(len(matrixA)):
+			linha = []
+			for j in range(len(matrixA[0])):
+				linha.append(matrixA[i][j] - matrixB[i][j])
+			m.append(linha)
+		
+		return m
+	
+	return 0
+#end subtractMatrix
 
 
 # ~ def divideMatrix(matrixA, matrixB):
@@ -176,26 +201,32 @@ def main():
 
 	print("- - - - - - - - - -\n")
 
-	matrix = rotateColumnLeft(matrix)
-	printMatrix(matrix)
+	#matrix = rotateColumnLeft(matrix)
+	#printMatrix(matrix)
 
-	print("- - - - - - - - - -\n")
+	#print("- - - - - - - - - -\n")
 
-	matrix = rotateColumnRight(matrix)
-	printMatrix(matrix)
+	#matrix = rotateColumnRight(matrix)
+	#printMatrix(matrix)
 
-	print("- - - - - - - - - -\n")
+	#print("- - - - - - - - - -\n")
 
-	matrix = rotateLineUp(matrix)
-	printMatrix(matrix)
+	#matrix = rotateLineUp(matrix)
+	#printMatrix(matrix)
 
-	print("- - - - - - - - - -\n")
-	matrix = rotateLineDown(matrix)
-	printMatrix(matrix)
+	#print("- - - - - - - - - -\n")
+	#matrix = rotateLineDown(matrix)
+	#printMatrix(matrix)
 
-	print("- - - - - - - - - -\n")
-	matrix = divideElements(matrix, 2)
-	printMatrix(matrix)
+	#print("- - - - - - - - - -\n")
+	#matrix = divideElements(matrix, 2)
+	#printMatrix(matrix)
+
+	m2 = matrix
+
+	m3 = sumMatrix(matrix, m2)
+
+	printMatrix(m3)
 
 
 if __name__ == '__main__':
